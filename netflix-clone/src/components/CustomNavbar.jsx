@@ -1,9 +1,6 @@
 import { Navbar, Nav, Container, Dropdown } from 'react-bootstrap';
 
 
-
-
-
 function CustomNavBar() {
     return (
         <>

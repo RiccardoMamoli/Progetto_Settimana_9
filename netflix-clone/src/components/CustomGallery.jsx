@@ -51,9 +51,11 @@ class CustomGallery extends Component {
 
                     {
                         this.state.isLoading &&
-                        <Spinner animation="border" role="status" className='text-light'>
-                            <span className='visually-hidden'>Loading...</span>
-                        </Spinner>
+                        <div className='w-100 d-flex justify-content-center'>
+                            <Spinner animation="border" role="status" className='text-light'>
+                                <span className='visually-hidden'>Loading...</span>
+                            </Spinner>
+                        </div>
                     }
                     {
                         this.state.isError && <Alert className="border-0 text-light" style={{ backgroundColor: '#221f1f' }}> Something went wrong!</Alert>
@@ -62,7 +64,7 @@ class CustomGallery extends Component {
 
 
                     {this.state.films.Search.map((film) => (
-                        <Col className="mb-2 text-center px-1">
+                        <Col className="mb-2 text-center px-1" key={film.imbdID}>
                             <img className="img-fluid" src={film.Poster} alt="cover" />
                             <p className='text-light'> {film.Title}</p>
                         </Col>
