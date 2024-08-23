@@ -1,13 +1,14 @@
 import { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Spinner, Alert } from 'react-bootstrap';
 
 class CustomGallery extends Component {
 
     state = {
         films: {
             Search: []
-        }
-        
+        },
+        isLoading: true,
+        isError: false
     }
 
     fetchMovie = () => {
@@ -23,12 +24,17 @@ class CustomGallery extends Component {
             })
             .then((arrayOfFilms) => {
                 this.setState({
-                    films: arrayOfFilms
+                    films: arrayOfFilms,
+                    isLoading: false
                 })
 
             })
             .catch((err) => {
                 console.log('non ci siamo', err)
+                this.setState({
+                    isLoading: false,
+                    isError: true,
+                })
             })
     }
 
@@ -40,31 +46,19 @@ class CustomGallery extends Component {
     render() {
         return (
             <>
-                {/* <div className="d-flex justify-content-between">
-                    <div className="d-flex">
-                        <h2 className="mb-4">TV Shows</h2>
-                        <div className="btn-group" role="group">
-                            <Dropdown className="ms-4 mt-1">
-                                <Dropdown.Toggle type="button" className="btn btn-secondary btn-sm dropdown-toggle rounded-0" data-bs-toggle="dropdown"
-                                    aria-expanded="false" style={{ backgroundColor: "#221f1f" }}>
-                                    Genres
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu className="dropdown-menu border-0">
-                                    <Dropdown.Item className='border-bottom-0'><a className="dropdown-item border-0" href="#void">Comedy</a></Dropdown.Item>
-                                    <Dropdown.Item className='border-bottom-0'><a className="dropdown-item border-0" href="#void">Drama</a></Dropdown.Item>
-                                    <Dropdown.Item><a className="dropdown-item" href="#void">Thriller</a></Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </div>
-                    </div>
-                    <div>
-                        <i className="bi bi-grid icons"></i>
-                        <i className="bi bi-grid-3x3 icons"></i>
-                    </div>
-                </div> */}
-
                 <h4> {this.props.saga}</h4>
                 <Row className="mb-4" xs={1} sm={2} lg={4} xl={6}>
+
+                    {
+                        this.state.isLoading && <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                    }
+                    {
+                        this.state.isError && <Alert className="border-0 text-light" style={{ backgroundColor: '#221f1f' }}> Something went wrong!</Alert>
+
+                    }
+
 
                     {this.state.films.Search.map((film) => (
                         <Col className="mb-2 text-center px-1">
