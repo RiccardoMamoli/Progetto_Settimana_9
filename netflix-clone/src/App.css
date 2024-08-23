@@ -49,6 +49,12 @@ footer {
   background-color: transparent !important;
 }
 
+.footer-button:hover {
+  color:white !important;
+  border-color: transparent !important;
+}
+
+
 .copyright {
   color: #838383 !important;
   font-size: 0.6em !important;

@@ -50,8 +50,9 @@ class CustomGallery extends Component {
                 <Row className="mb-4" xs={1} sm={2} lg={4} xl={6}>
 
                     {
-                        this.state.isLoading && <Spinner animation="border" role="status">
-                            <span className="visually-hidden">Loading...</span>
+                        this.state.isLoading &&
+                        <Spinner animation="border" role="status" className='text-light'>
+                            <span className='visually-hidden'>Loading...</span>
                         </Spinner>
                     }
                     {
